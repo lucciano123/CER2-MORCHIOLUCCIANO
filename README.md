@@ -17,5 +17,5 @@ Aplicación web desarrollada en **Django 5** para la **Fundación Patrimonio Viv
 
 ### 1. Clonar el repositorio e ingresar a la carpeta
 ```bash
-git clone [https://github.com/lucciano123/CER2-MORCHIOLUCCIANO.git](https://github.com/lucciano123/CER2-MORCHIOLUCCIANO.git)
+git clone https://github.com/lucciano123/CER2-MORCHIOLUCCIANO.git
 cd CER2-MORCHIOLUCCIANO
