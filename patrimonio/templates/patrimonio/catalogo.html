@@ -1,0 +1,47 @@
+{% extends 'patrimonio/base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Catálogo de Lugares Patrimoniales</h2>
+
+<div class="card mb-4 p-3 shadow-sm">
+    <h5>Filtrar por Categoría:</h5>
+    <div class="d-flex flex-wrap gap-2 mt-2">
+        <a href="{% url 'catalogo' %}" class="btn btn-outline-secondary btn-sm {% if not categoria_seleccionada %}active{% endif %}">Todas</a>
+        {% for cat in categorias %}
+            <a href="{% url 'catalogo' %}?categoria={{ cat.id }}" 
+               class="btn btn-outline-primary btn-sm {% if categoria_seleccionada.id == cat.id %}active{% endif %}">
+                {{ cat.nombre }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% if categoria_seleccionada %}
+    <p class="text-muted">Mostrando resultados para: <strong>{{ categoria_seleccionada.nombre }}</strong></p>
+{% endif %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for lugar in lugares %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ lugar.imagen }}" class="card-img-top" alt="{{ lugar.nombre }}" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+                <span class="badge bg-secondary mb-2">{{ lugar.categoria.nombre }}</span>
+                <h5 class="card-title">{{ lugar.nombre }}</h5>
+                <p class="card-text text-muted">{{ lugar.ubicacion }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center">
+                <a href="{% url 'detalle_lugar' lugar.pk %}" class="btn btn-sm btn-outline-primary">Ver detalle</a>
+                {% if user.is_authenticated and perms.patrimonio.change_lugarpatrimonial %}
+                    <a href="{% url 'editar_lugar' lugar.pk %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-warning">No se encontraron lugares registrados en esta categoría.</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

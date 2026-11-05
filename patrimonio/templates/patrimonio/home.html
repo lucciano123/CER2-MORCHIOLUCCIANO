@@ -1,0 +1,28 @@
+{% extends 'patrimonio/base.html' %}
+
+{% block content %}
+<div class="hero-card position-relative rounded-4 overflow-hidden shadow-lg p-5 text-center text-white my-4" 
+     style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/10989538/pexels-photo-10989538.jpeg'); 
+            background-size: cover; 
+            background-position: center; 
+            min-height: 450px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;">
+            
+    <h1 class="display-3 fw-bold mb-3 text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">
+        Fundación Patrimonio Vivo
+    </h1>
+    <p class="lead fs-4 col-md-10 mx-auto text-light" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
+        Identificando, documentando y difundiendo la riqueza arquitectónica y cultural de Valparaíso, Viña del Mar y todo Chile.
+    </p>
+    <hr class="my-4 border-light opacity-50 w-50">
+    <p class="fs-5 mb-4 text-light" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.8);">
+        Explora nuestro catálogo digital y descubre la historia de nuestro patrimonio.
+    </p>
+    <a href="{% url 'catalogo' %}" class="btn btn-primary btn-lg px-5 py-3 fs-5 rounded-pill shadow">
+        🏛️ Ver Catálogo Patrimonial
+    </a>
+</div>
+{% endblock %}

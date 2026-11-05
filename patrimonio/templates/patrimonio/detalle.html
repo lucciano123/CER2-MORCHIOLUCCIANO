@@ -1,0 +1,29 @@
+{% extends 'patrimonio/base.html' %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="row g-0">
+        <div class="col-md-6">
+            <img src="{{ lugar.imagen }}" class="img-fluid rounded-start h-100" style="object-fit: cover; width: 100%; min-height: 350px;" alt="{{ lugar.nombre }}">
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <span class="badge bg-primary mb-2">{{ lugar.categoria.nombre }}</span>
+                <h2 class="card-title">{{ lugar.nombre }}</h2>
+                <p class="text-muted">📍 <strong>Ubicación:</strong> {{ lugar.ubicacion }}</p>
+                <p class="text-muted">📅 <strong>Año de Construcción:</strong> {{ lugar.anio_construccion }}</p>
+                <hr>
+                <h5>Descripción</h5>
+                <p class="card-text">{{ lugar.descripcion }}</p>
+                
+                <div class="mt-4">
+                    <a href="{% url 'catalogo' %}" class="btn btn-secondary">Volver al catálogo</a>
+                    {% if user.is_authenticated and perms.patrimonio.change_lugarpatrimonial %}
+                        <a href="{% url 'editar_lugar' lugar.pk %}" class="btn btn-warning">Editar Información</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
